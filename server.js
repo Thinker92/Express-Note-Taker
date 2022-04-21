@@ -36,6 +36,21 @@ app.post('/api/notes', (req, res) => {
     res.json(noteList);
 })
 
+app.delete('/api/notes/:id', (req, res)=> {
+    
+    let noteList = JSON.parse(fs.readFileSync("./db/db.json", 'utf8'))
+    console.log(noteList);
+    let noteId = (req.params.id).toString();
+    console.log(noteId);
+
+    noteList = noteList.filter(selected => {
+        return selected.id != noteId;
+    })
+    console.log(noteList);
+    fs.writeFileSync("./db/db.json", JSON.stringify(noteList));
+    res.json(noteList);
+
+})
 
 app.listen(PORT, (req, res) => {
     console.log(`Server connected on port ${PORT}`);
