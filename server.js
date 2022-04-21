@@ -18,6 +18,7 @@ app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, './public/notes.html'));
 })
 
+
 app.listen(PORT, (req, res) => {
     console.log(`Server connected on port ${PORT}`);
 })
